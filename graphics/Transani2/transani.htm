@@ -1,0 +1,88 @@
+<html>
+
+<head>
+<title>Animations and transformations</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 3.0">
+</head>
+
+<body stylesrc="../home.htm" bgcolor="#000000" text="#FF0000" link="#ABABAB" vlink="#D6B001" alink="#FFFF00">
+<font size="3">
+
+<p></font><font size="6"><strong>Animations and transformations</strong></font><font size="5"></p>
+
+<p></font><font size="4"><strong>You will learn today:</strong></font><font size="3"></p>
+
+<blockquote>
+  <ul>
+    <li>How to create animations</li>
+    <li>How to use elementary transformations</li>
+  </ul>
+</blockquote>
+
+<p></font><font size="4"><strong>How can I create animations?</strong></font><font size="3"></p>
+
+<p>GLUT makes it fairly easy to write applications with a moving scene and /or camera. You
+can declare a function which is called by GLUT whenever there is no message to handle. You
+can be sure, that it is called often enough to get smooth animations, i.e. more than about
+25 times per second. This function is passed with <em>glutIdleFunc()</em>. What you have
+to do is to modify some values (for example change the position of an object) and then
+repaint the scene, what is normally done by a call to your &quot;Display&quot;-method.</p>
+
+<p></font><font size="4"><strong>How can I use elementary transformations?</strong></font><font size="5"></p>
+
+<p></font><font size="3">Imagine you have a big 3d-object, perhaps a human-being or an
+animal. It could consist of thousands of vertices. If you now want to rotate this object
+or move it, it would be quite inefficient to apply this operation to each vertex. As a
+game or graphics programmer you should always care for rendering speed, even if you are
+sure that your application will run smoothly. You always have to remember, that there are
+people with slower machines and it is easier to add new effects later, if the speed is
+better. So now, how can we solve this problem? This is absolutely easy: A vertex is first
+multiplied with the modelview matrix and then with the projection matrix. The modelview
+matrix is used to apply operations like moving (also called translating), rotating and
+scaling. Each of those can be expressed by a matrix. After multiplying this matrix with
+the modelview matrix, every vertex passed to OpenGL is moved, rotated or whatever. If you
+don't know how to get such a matrix: Never mind. You want have to compute it yourself.
+There are three OpenGL functions which do the work &#150; not only this, they also use
+hardware acceleration if available. So never write your own matrix multiplying functions
+if there are already some!</p>
+
+<p>The commands are <em>glScale*, glTranslate* </em>and<em> glRotate*</em>, where * must
+be replaced by f (float), i (int) or d (double). <em>glScale</em>* and <em>glTranslate</em>*
+take three arguments: One for each dimension. <em>glRotate</em>* takes an angle (in
+degrees) and a rotation axis. This is (nearly) all you need to apply transformations.</p>
+
+<p>But there is something you have to know if you want to apply several transformations:
+The order of transformations is very important and must be understood: The rotation axis
+always goes through the origin, that means you always turn around the origin. So it is
+logically, that translating an object and then rotating it gives another result than
+rotating an then translating. Ok, this is pretty easy. But because you (or at least
+OpenGL) uses matrices you have to swap the order of transformation! Or &#150; if you think
+in a local coordinate system &#150; the order in which transformations are applied is
+correct. Try some transformations to learn how they work! (Also see &quot;Translations
+Part2&quot;, another tutorial about this topic.)</p>
+
+<p>If you have more than one object, you probably have to apply different transformations
+for each object. To use <em>glLoadIdentity</em>&nbsp; is quite slow &#150; and if you use
+a camera (see my camera tutorial) it even doesn't work. But OpenGL helps: It has a matrix
+stack for each matrix (you can push at least 32 matrices to the modelview matrix stack).
+This is done by <em>glPushMatrix()</em>. After pushing it to the stack, you can apply
+transformations, draw an object and then restore the matrix again, what is done by <em>glPopMatrix()</em>.</p>
+
+<p>To work with those transformations, you should use <em>glutWireCube()</em>. The only
+parameter it takes is the size. Note: You could call <em>glScale</em> before, then you
+wouldn't get a cube!</p>
+
+<p>Click <a href="../opengl.htm#Trans1Ani">here</a> to see the result of transformations,
+using <em>glutIdleFunc</em> and the matrix stack.</font></p>
+
+<p><font size="3"><a href="../opengl.htm">Back</a></font></p>
+
+<p><big>**************************************************************************</big></p>
+
+<p><big>Any comments? Conact me!</big></p>
+
+<p><big><a href="mailto:philipp.crocoll@web.de">philipp.crocoll@web.de</a></big></p>
+
+<p><big><a href="http://www.codecolony.de">www.codecolony.de</a></big></p>
+</body>
+</html>
