@@ -5,6 +5,7 @@
 #include <iostream>
 #include <exception>
 #include <algorithm>
+#include "math/camera.hpp"
 
 #include <ctime>			
 #include <cstdlib>	
@@ -76,7 +77,7 @@ namespace _462 {
 		return Vector3::Zero();
 	}
 
-	Vector3 SphereBody::step_orientation( real_t dt, real_t motion_damping )
+	Quaternion SphereBody::step_orientation( real_t dt, real_t motion_damping )
 	{
 		// Note: This function is here as a hint for an approach to take towards
 		// programming RK4, you should add more functions to help you or change the
@@ -86,12 +87,21 @@ namespace _462 {
 		// vec.y = rotation along y axis
 		// vec.z = rotation along z axis
 		
-		return Vector3::Zero();
+		Camera camera;
+		camera.orientation = orientation;
+		
+		camera.roll(angular_velocity.x * dt);
+		camera.pitch(angular_velocity.y * dt);
+		camera.yaw(angular_velocity.z * dt);
+		
+		
+		return camera.orientation;
 	}
 
 	void SphereBody::apply_force( const Vector3& f, const Vector3& offset )
 	{
-		real_t I, angular_acc;
+		real_t I;
+		Vector3 angular_acc;
 		
 		// TODO apply force/torque to sphere
 		
@@ -99,16 +109,18 @@ namespace _462 {
 			force = force + f;
 		}
 		
-		/*
+		
 		else{
 		//inertia 
 			I = 2/5 * mass * radius * radius;
-			torque = Vector3::UnitX() - angular_velocity * 0.1f;
+			torque = cross(offset, f);
 			//formula from handout?
-			angular_acc = torque / I;
-			angular_velocity = torque / 	
+			angular_acc = torque * 1.0/I;
+			
+			force = force + angular_acc;
+			//angular_velocity = torque / 
 		}
-		*/
+		
 		
 		
 	}

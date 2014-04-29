@@ -113,6 +113,7 @@ p5/CMakeFiles/p5.dir/planebody.cpp.o
 p5/CMakeFiles/p5.dir/spherebody.cpp.o
  /afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p5/src/application/opengl.hpp
  /afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p5/src/glew/GL/glew.h
+ /afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p5/src/math/camera.hpp
  /afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p5/src/math/color.hpp
  /afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p5/src/math/math.hpp
  /afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p5/src/math/matrix.hpp

@@ -21,7 +21,7 @@ namespace _462 {
 			real_t mass1 = spheres[g]->mass;
 			spheres[g]->apply_force(gravity *mass1,Vector3::Zero());
 		}
-				
+		
 		for(unsigned int i = 0; i < num_spheres(); i++){
 			//euler's
 			/*spheres[i]->step_position(dt, 0);
@@ -29,33 +29,39 @@ namespace _462 {
 			*/
 			
 			/*RK4*/
-			
-			
 			//suppose to update acc// input is acc
 			spheres[i]->velocity = spheres[i]->rungeVel(spheres[i]->velocity, dt);
-			printf("spheres[i] velocity:\n");
-			std::cout<<spheres[i]->velocity<<std::endl;
+			//	printf("spheres[i] velocity:\n");
+			//	std::cout<<spheres[i]->velocity<<std::endl;
+			
+			
 			//suppose to use ^ acc to get pos// input is ve
 			spheres[i]->position = spheres[i]->rungePos(spheres[i]->position,dt);
 			//printf("spheres[i] velocity:\n");
 			//std::cout<<spheres[i]->velocity<<std::endl;
 			spheres[i]->sphere->position = spheres[i]->position;
 			
-		
 			/*RK4*/
+			
+			/*spin*/
+			
+			spheres[i]->orientation = spheres[i]->step_orientation(dt, collision_damping);
+			spheres[i]->sphere->orientation = spheres[i]->orientation;
+			
+			/*spin*/
+			
 
-				
+			
 			for(unsigned int j=0; j < num_planes(); j++){
-				
 				collides(*spheres[i], *planes[j],collision_damping);
 			}
 			
 			for(unsigned int n=0; n < num_spheres(); n++){
 				if(i == n){continue;}
-					collides(*spheres[i], *spheres[n],collision_damping);
+				collides(*spheres[i], *spheres[n],collision_damping);
 			}
-	
- 
+			
+
 			for(unsigned int k=0; k < num_triangles(); k++){
 				collides(*spheres[i], *triangles[k], collision_damping);
 			}

@@ -16,7 +16,7 @@ public:
     TriangleBody( Triangle* geom );
     virtual ~TriangleBody() { }
     virtual Vector3 step_position( real_t dt, real_t motion_damping );
-    virtual Vector3 step_orientation( real_t dt, real_t motion_damping );
+    virtual Quaternion step_orientation( real_t dt, real_t motion_damping );
     virtual void apply_force( const Vector3& f, const Vector3& offset );
 	virtual bool checkBary(SphereBody& body1, TriangleBody& body2);
 	virtual Vector3 normal_T(TriangleBody& body2);
