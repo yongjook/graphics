@@ -12,39 +12,47 @@ namespace _462 {
 	{
 		reset();
 	}
-
+/*
+	struct State{
+		Quaternion orientation;
+		Vector3 angularMomentum;
+		
+		Quaternion spin;
+		Vector3 angularVelocity;
+		
+		float intertia;
+		float inverseInertia;
+		
+		void recalculate(){
+			angularVelocity = angularMomentum * inverseInertia;
+			
+			normalize(orientation);
+			
+			Quaternion q(0, angularVelocity.x, angularVelocity.y, angularVelocity.z);
+			
+			spin = 0.5f * q * orientation;
+		}
+		
+	};
+	
+	struct Derivatives{
+		Quaternion spin;
+		Vector3 torque;
+	};
+	*/
 	void Physics::step( real_t dt )
 	{	
-		Vector3 velocity;
 		//add gravity
 		for(unsigned int g = 0; g < num_spheres(); g++){
 			real_t mass1 = spheres[g]->mass;
 			spheres[g]->apply_force(gravity *mass1,Vector3::Zero());
 		}
-				
+			
 		for(unsigned int i = 0; i < num_spheres(); i++){
-			//euler's
-			/*spheres[i]->step_position(dt, 0);
+			
+			spheres[i]->step_position(dt, 0);
 			spheres[i]->sphere->position = spheres[i]->position;
-			*/
-			
-			/*RK4*/
-			
-			
-			//suppose to update acc// input is acc
-			spheres[i]->velocity = spheres[i]->rungeVel(spheres[i]->velocity, dt);
-			printf("spheres[i] velocity:\n");
-			std::cout<<spheres[i]->velocity<<std::endl;
-			//suppose to use ^ acc to get pos// input is ve
-			spheres[i]->position = spheres[i]->rungePos(spheres[i]->position,dt);
-			//printf("spheres[i] velocity:\n");
-			//std::cout<<spheres[i]->velocity<<std::endl;
-			spheres[i]->sphere->position = spheres[i]->position;
-			
-		
-			/*RK4*/
-
-				
+					
 			for(unsigned int j=0; j < num_planes(); j++){
 				
 				collides(*spheres[i], *planes[j],collision_damping);

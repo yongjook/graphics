@@ -24,39 +24,36 @@ namespace _462 {
 		torque = Vector3::Zero();
 	}
 	
+	Vector3 SphereBody::rk4(Vector3 position ,real_t dt){
+		
+		
+		velocity += (force / mass ) * dt ; // change in velocity is added to the velociy
+		position += velocity * dt;
+		
+	}
+	
+	
 	/*RK4*/
-
-	Vector3 SphereBody::rungeVel(Vector3 x, real_t dt){
-		Vector3 K2, K1, K3, K4;
-		real_t t = 0;
-		K1 = (dt * getAcc(x,t));
-		K2 = (dt * getAcc((x+(1/2 * K1)), (t + 1/2*dt)));
-		K3 = (dt * getAcc((x+(1/2 * K2)), (t+1/2*dt)));
-		K4 = (dt * getAcc((x+K3), (t+dt)));
-		Vector3 runge = (x + ((K1 + 2 * K2 + 2 * K3 + K4)/6));
-		return runge;
-	}
-
-	Vector3 SphereBody::rungePos(Vector3 x, real_t dt){
-		Vector3 K2, K1, K3, K4;
-		real_t t = 0;
-		K1 = (dt * getVelocity(x,t));
-		K2 = (dt * getVelocity((x+1/2 * K1), (t + 1/2*dt)));
-		K3 = (dt * getVelocity((x+1/2 * K2), (t+1/2*dt)));
-		K4 = (dt * getVelocity((x+K3), (t+dt)));
-		Vector3 runge = (x + ((K1 + 2 * K2 + 2 * K3 + K4)/6));
+	double f(double x, real_t dt);
+	double runge(double x, double y);
+	
+	double runge(double x, double y){
+		double K2, K1, K3, K4
+		
+		K1 = (H * f(x,y));
+		K2 = (H * f((x+1/2 * H), (y+1/2*K1)));
+		K3 = (H * f((x+1/2 * H), (y+1/2*K2)));
+		K4 = (H * f((x+H), (y+K3)));
+		
+		double runge = (y+(1/6) * (K1+2*K2+2*K3 + K4));
 		return runge;
 	}
 	
-	Vector3 SphereBody::getAcc(Vector3 v, real_t t){
-		return force/mass;
-	}
 	
-	Vector3 SphereBody::getVelocity(Vector3 x, real_t t){
-		//return velocity * t;
-		//velocity += force/mass * t;
-		return velocity;
-	}
+	
+	
+	
+	
 	
 	/*RK4*/
 
@@ -98,6 +95,8 @@ namespace _462 {
 		if (offset == Vector3::Zero()){
 			force = force + f;
 		}
+		
+		
 		
 		/*
 		else{

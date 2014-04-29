@@ -96,8 +96,12 @@ namespace _462 {
 				
 				u = body1.velocity - 2* dot(body1.velocity, normalN) * normalN;
 				dampingV1 = u - collision_damping * u;
-							
+				
+				
 				body1.velocity = dampingV1;
+				
+				
+				
 				return true;
 			}
 		}
@@ -148,7 +152,6 @@ namespace _462 {
 		
 		p1 = body1.position;
 		//need to calculate body normal also
-				
 		n = body2.normal;
 		p2 = body2.position;
 		a=  p1 - p2;

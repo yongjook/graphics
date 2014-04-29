@@ -20,7 +20,14 @@ void Spring::step( real_t dt )
 {
     // TODO apply forces to attached bodies
 	
-
+	Vector3 v1,v2;
+	//damping? 
+	v1 = body1->velocity;
+	v2 = body2->velocity;
+	
+	v1 = v1 - damping *v1;
+	v2 = v2 - damping * v2;	 
+	
 	
 	//end damping
 	
