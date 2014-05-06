@@ -1,0 +1,24 @@
+ummm. yeah project 2.. i messed up. 
+
+I didn't count the times i will be out of campus for interivews and i started only a week and realized that there was wayyy more things to read and understand.
+I'm sorry. I hate myself too and my data structure which is none existance.
+BUT I got shader to work!! and it looks dope. 
+
+
+So i will now begin to explain what i have done. what little i have done. Professor said that she would take account 2 days that i was without the 5xxx computers which meant that i 
+could not compile or run any of my codes. 
+
+
+1. I have implemented a enviromental map shader by utilizing the red book. I used reflect function and texture function to acquire the texture of the cubemap and set that as the gl_FragColor. 
+
+2. To test the shader. i suggest you take out the whole subdivide code and run it. It will look glrious. 
+
+3. now to explain my structure. i go through each triangle and get its index and positions then i get the vectorD to put find the odd vertices
+then i put those odd vectices into the even vertice list. I then make a list of adjacent vertices for each of the vertex to use it in the beta formula to find the even vertices and to update the position. 
+
+
+To my dismay, this is only a theory. I did not have enough time to work on the syntax or to debug, and i dont' want to use late days when i have 3 project left. 
+
+sorry for a bad project. 
+
+-Joon

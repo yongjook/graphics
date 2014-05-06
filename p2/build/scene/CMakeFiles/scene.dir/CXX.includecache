@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/math/math.hpp
+algorithm
+-
+cmath
+-
+
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/math/vector.hpp
+math/math.hpp
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/math/math/math.hpp
+algorithm
+-
+cassert
+-
+cmath
+-
+iostream
+-
+
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/scene/mesh.hpp
+math/vector.hpp
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/scene/math/vector.hpp
+vector
+-
+cassert
+-
+cmath
+-
+
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/scene/subdivide.cpp
+scene/mesh.hpp
+/afs/andrew.cmu.edu/usr17/yongjook/private/graphics/p2/src/scene/scene/mesh.hpp
+
